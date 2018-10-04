@@ -10,4 +10,6 @@ public interface CarService {
 	void addCar(CarModel car);
 	void deleteCar(CarModel car);
     Optional<CarModel> getCarDetailById(Long id);
+    void updateCar(Long id, CarModel carBaru);
+
 }

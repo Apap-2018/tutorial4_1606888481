@@ -14,7 +14,8 @@
 			<h3 th:text="'tipe: '+${car.type}"></h3>
 			<h3 th:text="'harga: '+${car.price}"></h3>		
 			<h3 th:text="'jumlah: '+${car.amount}"></h3>
-		
+
+			<a th:href="@{/car/update/{carId}(carId=${car.id})}">update this car</a>		
 			<a th:href="@{/car/delete/{carId}(carId=${car.id})}">Delete this car</a>
 			
 			
@@ -23,6 +24,11 @@
 		<br>
 		
 		<a th:href="@{/car/add/{id}(id=${dealer.id})}">Add car</a>		
+		<br>
+		<br>
+		
+		
+		<a th:href="@{/dealer/update/{id}(id=${dealer.id})}">update this dealer</a>
 		<a th:href="@{/dealer/delete/{id}(id=${dealer.id})}">Delete this dealer</a>
 				
 	</body>

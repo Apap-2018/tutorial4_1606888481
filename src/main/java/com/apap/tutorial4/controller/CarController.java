@@ -38,4 +38,18 @@ public class CarController {
 		return "delete";
 	}
 
+	@RequestMapping(value = "/car/update/{carId}", method = RequestMethod.GET)
+	private String updateCar(@PathVariable (value = "carId",required = true) Long carId, Model model) {
+		CarModel car = carService.getCarDetailById(carId).get();
+		model.addAttribute("car",car);
+		return "updateCar";
+	}
+	
+	@RequestMapping(value = "/car/update/{carId}", method = RequestMethod.POST)
+	private String updateCarSubmit(@PathVariable (value = "carId") long carId, @ModelAttribute CarModel car) {
+		carService.updateCar(carId, car);
+		return "update";
+	}
+
+
 }

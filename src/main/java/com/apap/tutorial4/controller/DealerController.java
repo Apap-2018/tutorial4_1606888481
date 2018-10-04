@@ -1,6 +1,8 @@
 package com.apap.tutorial4.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import com.apap.tutorial4.model.*;
 import com.apap.tutorial4.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,19 @@ public class DealerController {
 		dealerService.deleteDealer(dealer);
 		return "delete";
 	}
-
+	
+	@RequestMapping(value = "/dealer/update/{dealerId}", method = RequestMethod.GET)
+	private String updateDealer(@PathVariable (value = "dealerId",required = true) Long dealerId, Model model) {
+		DealerModel dealer = dealerService.getDealerDetailById(dealerId).get();
+		model.addAttribute("dealer",dealer);
+		return "updateDealer";
+	}
+	
+	@RequestMapping(value = "/dealer/update/{dealerId}", method = RequestMethod.POST)
+	private String updateDealerSubmit(@PathVariable (value = "dealerId") long dealerId, @ModelAttribute DealerModel dealer) {
+		dealerService.updateDealer(dealerId, dealer);
+		return "update";
+	}
 	
 	@RequestMapping(value = "/dealer/{dealerId}", method = RequestMethod.GET)
 	private String viewDealer(@PathVariable(value = "dealerId", required = true) Long dealerId, Model model) {
